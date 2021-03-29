@@ -26,5 +26,6 @@ export default () => {
     <BlogProvider>
       <App />
     </BlogProvider>
-  );
+  )
+  
 };
