@@ -17,7 +17,7 @@ export const BlogProvider = ({ children }) => {
   const addBlogPost = () => {
     dispatch({ type: "add_blogpost" });
   };
-
+ 
 
   return (
     <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
