@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import { Context } from "../context/BlogContext";
-import { Feather } from "@expo/vector-icons"
+import { Feather } from "@expo/vector-icons";
 
-const IndexScreen = () => {
-  const { state, addBlogPost, deleteBlogPost} = useContext(Context);
+const IndexScreen = ({ navigation }) => {
+  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
   return (
     <View>
       <Text>Index Screen</Text>
@@ -14,12 +21,16 @@ const IndexScreen = () => {
         keyExtractor={(blogPost) => blogPost.title}
         renderItem={({ item }) => {
           return (
-            <View style={styles.row}>
-          <Text style={styles.title}>{item.title} </Text>
-          <TouchableOpacity onPress={()=> deleteBlogPost(item.id)}>
-          <Feather name="trash" style={styles.icon}/>
-          </TouchableOpacity>
-          </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Show", { id: item.id })}
+            >
+              <View style={styles.row}>
+                <Text style={styles.title}>{item.title} </Text>
+                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                  <Feather name="trash" style={styles.icon} />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
@@ -34,15 +45,14 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderColor: "gray",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   title: {
     fontSize: 18,
-
   },
   icon: {
-    fontSize: 24
-  }
+    fontSize: 24,
+  },
 });
 
 export default IndexScreen;
