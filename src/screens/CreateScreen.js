@@ -14,6 +14,7 @@ const CreateScreen = ({ navigation }) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
